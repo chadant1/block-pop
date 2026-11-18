@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover">
+  <meta name="theme-color" content="#1a1d3a">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="Block Pop">
+  <meta name="description" content="A relaxing block puzzle: drop pieces on an 8x8 grid and clear rows and columns.">
+  <link rel="manifest" href="manifest.webmanifest">
+  <link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
+  <link rel="icon" type="image/png" href="icons/icon-192.png">
+  <link rel="stylesheet" href="style.css">
+  <title>Block Pop</title>
+</head>
+<body>
+  <div id="app">
+    <header id="hud">
+      <button id="btn-sound" class="icon-btn" aria-label="Toggle sound">
+        <svg id="ico-sound-on" viewBox="0 0 24 24"><path d="M4 9v6h4l5 4V5L8 9H4z"/><path d="M16 8.5a5 5 0 0 1 0 7M18.5 6a8.5 8.5 0 0 1 0 12" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+        <svg id="ico-sound-off" viewBox="0 0 24 24" hidden><path d="M4 9v6h4l5 4V5L8 9H4z"/><path d="M17 9l5 6M22 9l-5 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+      </button>
+      <div class="best">
+        <svg viewBox="0 0 24 24" class="crown"><path d="M3 18h18l-1.5-10-5 4L12 5l-2.5 7-5-4z"/></svg>
+        <span id="best">0</span>
+      </div>
+      <button id="btn-restart" class="icon-btn" aria-label="Restart">
+        <svg viewBox="0 0 24 24"><path d="M20 12a8 8 0 1 1-2.34-5.66" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/><path d="M20 4v5h-5z"/></svg>
+      </button>
+    </header>
+    <div id="score">0</div>
+    <canvas id="game"></canvas>
+
+    <div id="overlay-over" class="overlay" hidden>
+      <div class="card">
+        <h2>No more moves</h2>
+        <div class="final-label">Score</div>
+        <div id="final-score" class="final-score">0</div>
+        <div id="new-best" class="new-best" hidden>New best!</div>
+        <div class="final-label small">Best <span id="final-best">0</span></div>
+        <button id="btn-again" class="big-btn">Play again</button>
+      </div>
+    </div>
+
+    <div id="overlay-confirm" class="overlay" hidden>
+      <div class="card">
+        <h2>Start over?</h2>
+        <p>Your current game will be lost.</p>
+        <div class="row">
+          <button id="btn-cancel" class="big-btn ghost">Cancel</button>
+          <button id="btn-confirm" class="big-btn">Restart</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="game.js"></script>
+  <script>
+    if ('serviceWorker' in navigator) {
+      window.addEventListener('load', () => navigator.serviceWorker.register('sw.js').catch(() => {}));
+    }
+  </script>
+</body>
+</html>
